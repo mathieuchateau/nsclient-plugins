@@ -2,7 +2,7 @@
 # Check Hyper-V VM state
 # Author: Mathieu Chateau - LOTP
 # mail: mathieu.chateau@lotp.fr
-# version 0.2
+# version 0.3
 # ====================================================================
 
 #
@@ -60,7 +60,7 @@ $allVM=get-VM
 $output=""
 $excludeVMArray=@()
 # check params if provided
-if($excludeVM -ne ""
+if($excludeVM -ne "")
 {
 	$excludeVMArray=$excludeVM -split ","
 }
