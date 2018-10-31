@@ -24,5 +24,6 @@ check_sharepoint=lotp_check_sharepoint.ps1 $ARG1$ $ARG2$ $ARG3$ $ARG4$ $ARG5$
 check_certificate=lotp_check_certificate.ps1 -checkMyStore $ARG1$ -checkRootStore $ARG2$ -checkCAStore $ARG3$   -checkAuthRootStore $ARG4$ -checkSharePointStore $ARG5$ -expireInDays $ARG6$ -maxWarn $ARG7$ -maxError $ARG8$  
 check_time=lotp_check_time.ps1 -refTimeServer $ARG1$ -maxWarn $ARG2$ -maxError $ARG3$  
 check_multiping=lotp_check_multiping.ps1 -targets $ARG1$ -maxWarn $ARG2$ -maxError $ARG3$  
-check_windows_updates=check_windows_updates.ps1  
+check_windows_updates=check_windows_updates.ps1
+check_tcp_port=lotp_check_tcp_port.ps1 -Target $ARG1$ -Port $ARG2$ -WarningThreshold $ARG3$ -criticalThreshold $ARG4$
 
