@@ -67,17 +67,24 @@ if($excludeVM -ne "")
 Using-Culture en-us {
     foreach ($vm in $allVM)
     {
-	    if ($excludeVMArray -notcontains $vm.Name)
-	    {
-		    if($vm.State -ne [Microsoft.HyperV.PowerShell.VMState].GetEnumName(2))
-		    {
-			    $countVMNotRunning++
-		    }
-		    if($vm.Status -ne "Operating normally")
-		    {
-			    $countVMIssue++
-		    }
-	    }
+        if ($excludeVMArray -notcontains $vm.Name)
+        {
+            if($vm.ReplicationState -eq [Microsoft.HyperV.PowerShell.ReplicationWmiState]::Critical)
+            {
+                $countVMIssue++
+            }
+            elseif ($vm.ReplicationState -eq [Microsoft.HyperV.PowerShell.ReplicationWmiState]::Disabled) 
+            {
+                if($vm.State -ne [Microsoft.HyperV.PowerShell.VMState]::Off)
+                {
+                    $countVMNotRunning++
+                }
+                if($vm.Status -ne "Operating normally")
+                {
+                    $countVMIssue++
+                }
+            }
+        }
     }
 
     $bpaResult=Get-BpaResult -ModelId Microsoft/Windows/Hyper-V -ErrorAction 'silentlycontinue' | ? {$_.Resolution -ne $null}
